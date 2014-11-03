@@ -24,15 +24,17 @@
         color: #686868;
       }
 
-      .antipattern {
-        color: white;
-        background-color: #930a11
-      }
+
 
       .ide {
         background-color: #4D5052;
         color: #f3f3f3;
         text-shadow: 0 0 20px #333;        
+      }
+
+      .antipattern {
+        color: white;
+        background-color: #930a11
       }
 
       .antipattern h1 {
@@ -49,6 +51,10 @@
       .important {
         color: #a6e22e;
         text-decoration: underline;
+      }
+
+      .nolink a {
+        color: #f3f3f3;
       }
 
       .green {
@@ -71,22 +77,48 @@
         padding-top: 5em;
       }
 
+      .title {
+        color: white;
+      }
+
+      .title h1 {
+        font-size: 70px;
+        margin: 0;
+      }
+
+
+
+      .title .author {
+        position: relative;
+        top: 100px;
+        text-align: right;
+      }
+
+      .title .author h3 {
+        margin: 0;
+      }
+
+
+
     </style>
   </head>
   <body>
     <textarea id="source">
 
-class: center, middle
+class: center, middle, title
+background-image: url('izbushka.jpg')
+.title[
+# Software Architecture 
+# Anti-Patterns
+]
 
-# Software Architecture Anti-Patterns
-Sins we always make.
----
 
-# Agenda
 
-1. Anti-Patterns
-2. Why anti-patterns?
-3. How to fight?
+.author[
+### Eduards Sizovs 
+### eduards.sizovs@gmail.com
+### @eduardsi 
+]
 
 ---
 # "I have already did that" Architecture
@@ -453,7 +485,8 @@ class: middle, ide
 class: center, middle, inverse
 ## Apply .strike[micro] .important[service-oriented] mindset to software structure. Keep services decoupled as if they were remote.
 ???
-Path towards micro-services. You'll see what your app is doing and whether it's doing too much.
+- Path towards micro-services. You'll see what your app is doing and whether it's doing too much.
+- Interestingly, you have to keep services decoupled let them talk via API, exchange with events and try eventual consistency.
 
 ---
 class: center, middle, inverse
@@ -471,17 +504,67 @@ I think we tend to overuse layering and do not benefit from it.
 
 ---
 class: inverse
-# Expected benefits from layering
+# Expected (.danger[doubtful]) benefits from layering
+
+---
+class: inverse
+# Expected (.danger[doubtful]) benefits from layering
 ### - Ability to distribute your layers over multiple physical tiers (ha-ha)
+
+---
+class: inverse
+# Expected (.danger[doubtful]) benefits from layering
+### - .fade[Ability to distribute your layers over multiple physical tiers (ha-ha)]
 ### - Decoupling / abstracting for exhangeability (ha-ha)
+
+---
+class: inverse
+# Expected (.danger[doubtful]) benefits from layering
+### - .fade[Ability to distribute your layers over multiple physical tiers (ha-ha)]
+### - .fade[Decoupling / abstracting for exhangeability (ha-ha)]
 ### - Decoupling / abstracting for independent evolution (ha-ha)
+
+---
+class: inverse
+# Expected (.danger[doubtful]) benefits from layering
+### - .fade[Ability to distribute your layers over multiple physical tiers (ha-ha)]
+### - .fade[Decoupling / abstracting for exhangeability (ha-ha)]
+### - .fade[Decoupling / abstracting for independent evolution (ha-ha)]
 ### - Decoupling for reuse (ha-ha)
+
+---
+class: inverse
+# Expected (.danger[doubtful]) benefits from layering
+### - .fade[Ability to distribute your layers over multiple physical tiers (ha-ha)]
+### - .fade[Decoupling / abstracting for exhangeability (ha-ha)]
+### - .fade[Decoupling / abstracting for independent evolution (ha-ha)]
+### - .fade[Decoupling for reuse (ha-ha)]
 ### - Separation of concerns (is particular layer our concern?)
-### - Related stuff co-location (are layers really related?)
-### - Constraint enforcement (is there a better way?)
 ???
 - SoC -> we end up with our concerns (functionality) scattered among layers
-- CoE -> SQL cannot be written in domain model (naming convetions, annotations, import control)
+
+---
+class: inverse
+# Expected (.danger[doubtful]) benefits from layering
+### - .fade[Ability to distribute your layers over multiple physical tiers (ha-ha)]
+### - .fade[Decoupling / abstracting for exhangeability (ha-ha)]
+### - .fade[Decoupling / abstracting for independent evolution (ha-ha)]
+### - .fade[Decoupling for reuse (ha-ha)]
+### - .fade[Separation of concerns (is particular layer our concern?)]
+### - Related stuff co-location (are layers really related?)
+
+---
+class: inverse
+# Expected (.danger[doubtful]) benefits from layering
+### - .fade[Ability to distribute your layers over multiple physical tiers (ha-ha)]
+### - .fade[Decoupling / abstracting for exhangeability (ha-ha)]
+### - .fade[Decoupling / abstracting for independent evolution (ha-ha)]
+### - .fade[Decoupling for reuse (ha-ha)]
+### - .fade[Separation of concerns (is particular layer our concern?)]
+### - .fade[Related stuff co-location (are layers really related?)]
+### - Constraint enforcement (is there a better way?)
+???
+- CoE -> SQL cannot be written in domain model (do we really need a separate layer or just a constraint / best practice? or naming convetions, annotations, import control is OK?)
 
 
 DON'T FORGET THAT WE CAN EXTRACT PARTS INTO SEPARATE LIBRARIES OR KEEP LIBRARY INTERNAL.
@@ -490,19 +573,89 @@ DON'T FORGET THAT WE CAN EXTRACT PARTS INTO SEPARATE LIBRARIES OR KEEP LIBRARY I
 class: center, middle, inverse
 # Layering is your service's .important[detail] and is .important[internal] to the service.
 ???
-it doesn't mean that services can't follow holistic approach.
+- Different services require differnet layering. That's why usually you have to move the stuff through all layers. By choosing single layering strategy we oversimplify the system and force layering model that looks god damn stupid for some services.
+- it doesn't mean that services can't follow holistic approach.
+
+---
+class: center, middle, inverse
+# Keep services .important[mind-sized] so there is no need for internal layering. Break services into tiny .important[modules].
+
+### (and keep modules in separate VCS tree)
+???
+You can split horizontally or vertically by forming service hierarchy. Utility modules for  with Time, Queues, Caching can plugged similar to 3rd party to keep your system simpler.
+
+---
+class: center, middle, antipattern
+# Boundless Architecture
+
+---
+class: center, middle
+# The Big Escape
+![](boundaries.jpg)
+
+---
+class: middle, center, inverse
+# Some parts of your system must never .danger[uncontrollably escape] to territories that are .danger[difficult to control].
+???
+Treat boundaries as danger zone. don’t send your code for use there.
 
 
-do we need a separate layer for SQLs or it's just a best practices (constraint) that can be communicated in a different way? 
+---
+class: inverse
+# .danger[(!)] Don't try this at home
 
-More:
-Modules
-Onion Architecture
-Hexagon Architecture
-Clean Architecture
+---
+class: inverse
+# .danger[(!)] Don't try this at home
+### - Services know too much about each other
 
-Learn why layered architecture usually suck and what to do with it 
-(http://www.codingthearchitecture.com/2014/06/01/an_architecturally_evident_coding_style.html)
+---
+class: inverse
+# .danger[(!)] Don't try this at home
+### - .fade[Services know too much about each other]
+### - Domain entities automatically map to RESTful Representations
+
+???
+Public APIs, like diamonds, are forever. Once  you expose something it's quite hard to rollback.
+
+---
+class: inverse
+# .danger[(!)] Don't try this at home
+### - .fade[Services know too much about each other]
+### - .fade[Domain entities automatically map to RESTful Representations]
+### - Persistent entities go outside of TX boundaries
+???
+Otherwise you'll have to FEAR lazy loading if you have one.
+
+---
+class: inverse
+# .danger[(!)] Don't try this at home
+### - .fade[Services know too much about each other]
+### - .fade[Domain entities automatically map to RESTful Representations]
+### - .fade[Persistent entities go outside of TX boundaries]
+### - UI is formed directly from transactional domain model
+???
+Which make model UI-pleasing. CQRS!!!??
+
+---
+class: middle, center, inverse
+# .important[Be conservative] in what you expose. .important[Take control] over what you expose.
+
+???
+What happens when there are no boundaries? (example of domain model escaping)
+- Uncertainty
+- Fear (touch and break client apps)
+- Lost time (I have to go to apps and find usages of all domain methods...)
+- Security risks
+- Lack of comfort that impacts COMPREHENSIVENESS
+
+---
+class: middle, center, inverse
+# Properly managed service boundaries make .important[integration testing unnecessary] (almost).
+
+### (because integration tests are scam -> .nolink[http://goo.gl/OiCmSH])
+???
+You can use test doubles and contract testing.
 
 ---
 
@@ -556,12 +709,6 @@ Simon Brown's Book (Sketching)
 
 Alternative: C4, Brown
 
-
----
-# Alchemy Architecture
-* I feel that there are some rules,  but can't explain. And no one actually can. When I talk to colleagues, we end up in weird discussions. 
-* Lack of shared understanding. No reasonable explanation for decisions made by someone.
-
 ---
 
 # Optimistic Architecture
@@ -574,117 +721,49 @@ fault tolerance is a lesson best learned offline
 One interesting concept they introduced is the Blast Radius. During their failure testing they explicitly analyze how far that failure reaches into the application landscape. With that information, they've tried to tune the interfaces between components to become a bit more resilient.
 
 ---
-
-# Boundless Architecture
-Shaky - touch and break API. API is not visible.
-No Boundaries - let’s integration test!!!. Too many boundaries!!! City layout?! T
-I am afraid to touch API because it's impossible to know who uses it and what parts of it.
-treat boundaries as danger zone. don’t send your code for use there.boundaries are important because of different change rate and different reasons to change. Bad design is going to be there, so you can localize imperfections from key parts of the software.
-
-Invisible relationships among bounded contexts (wrapped IDS please).
-Public APIs, like diamonds, are forever. You have one chance to get it right so give it your best.
----
-
-
-
-UI-pleasing architectures. CQRS!!!??
+class: center, middle, antipattern
+# Alchemy Architecture
+???
+* I feel that there are some rules,  but can't explain. And no one actually can. When I talk to colleagues, we end up in weird discussions (usually endless). 
+* Lack of shared understanding. No reasonable explanation for decisions made by someone (usually some hero who drives all the architecture, which doesn't usually mean Ivory Tower, just someone more experienced than you)
 
 ---
-
-
-
-# Domain-Agnostic Architecture 
-* Lack of Domain Model
-* Disconnection from business mental model (you built Word, but business really wants Excel)
-In applications such as /Social Network/ we don't need domain model, it's data-driven.
-Object roles are a crucial part of the end user mental model.When users
-think about what they’re operating on or playing with, they think objects.
-When they think about what those objects are going to do or how they are
-going to do it, they usually think in terms of the roles those objects play.
-This will become more important when we use the DCI architecture to
-start supporting a user mental model that operates on several object roles
-together, but it’s true even for simple operations. When I ask the ATM to
-print the balance for the account currently on the screen, I momentarily
-forget exactly what kind of account it is. I think of it in its object role as a
-printable account, not as a savings account or checking account. That class
-distinction is irrelevant to the action of printing.
-
-
-Consider the shapes editor again. What domain object should support the
-delete function? Maybe it is an operation on a shape that removes it from
-the screen. But what if several shapes are highlighted, and the user presses
-delete? Now it is an operation on a collection. Collections of objects live
-in the domain model; groups of graphical objects are a common structure
-in shape programs. We could replicate the operation and add a lot of
-context-sensitive complexity – but, instead, we return to the user mental
-model. To the user, the deleted ‘‘things’’ are both special cases of selections.
-When one deletes something, what one deletes is the current selection.
-Now, a selection isn’t a class in the Shape hierarchy; it’s a role
-
-For example, let’s say that my word processor supports tables, text paragraphs, and figures. One requirements scenario captures the user/system interactions to move a table within the document. I can describe the possible scenarios: moving a table from one page to another; moving the table to a point within a paragraph; moving the table just between two existing paragraphs; or even moving a table within another table. The possibilities are endless. Instead of depending on an exhaustive compilation of requirements scenarios alone we instead turn to something that matters even more: the end user’s cognitive model. Users carry models in their head of the internals of the program they are using. They trust that the program ‘‘knows’’ about tables, paragraphs, and figures. The end user trusts the programmer to have paid attention to the need for white space between the table and any adjoining paragraphs. These elements of the end user mental model, while quite static, are useful for reasoning about most possible use case scenarios. If the program doesn’t have an internal representation of a text para- graph, of a table and of a figure, then the program must work hard to present the illusion that it does. Otherwise, the program will endlessly surprise the end user. If model architecture is close to end user cognitive model, then most use cases will fit smoothly, because business domain models remain relatively stable over time.
-
-About he said that irrespective of the greatness of your architecture and all the agile practices your making use of, faster or later you will operate into scaling problems caused by the organisational composition. Connection between code and people was the subject of Michael Feathers' talk. Everyone knows Conway's Law: architecture mirrors the org chart. Or as he phrases it, communication costs drive structure in software. Why not turn it to our advantage? He proposed structuring the organization around the needs of the code. Balance maintaining an in-depth knowledge base of each application against getting new eyes on it. Boundaries in the code will always follow the communication boundaries of social structure, so divide teams where the code needs to divide, by organization and by room. Eric Evans also suggested using Conway's Law to maintain boundaries in the code. 
-
-
-
-It’s important to understand the relation between the different aggregates in your model, and what strategies to use on these relations (working together, just re-using the other model, translating between models or several other strategies). Try to focus your modeling effort on your core-business, which might be just 10% of all the software you develop
-
-Domain Dictionary for Ubiquitous Language. Listening. Speaking Business Language.
-
-
+class: center, middle, inverse
+# Wear software architect's hat by understanding and impacting current state of affairs.
+???
+- ‘‘all hands on deck’’ mentality — everyone is in some small part an architect, and that everyone has a crucial role to play in good project beginnings
+- Engage into decision making. Be proactive and ask for rational explanation. Challenge decisions.
+- It's important to handover more decisions to teams (start small, then more and more)
+- Sometimes things are pretty messy or architecture is driven by Ivory Tower. Go for external help / coaching - ask for experie if you don't have one (ask manager for architectural review). Do you want to work with sexy system or drown in BBoM? 
 
 ---
-# ??Blindless?? Architecture
-* What the system is vs. what the system does. Commands / Domain
-* level of abstraction of code is negligible. Too small. Need higher level scenarios to understand functionality.
-* How often you need to understand what happens when? What system does when?
+class: inverse
+# How to make things better?
+### - Visualize actual architecture. 
+### - Visualize expected / ideal architecture.
+### - Iterate towards ideal.
+???
+The overal architecture is complex. Changing architecture is hard. You have to PULL architecture into expected direction. If you're afraid or don't believe - you already lost.
 
 ---
-# Single-person driven architecture
-It doesn't mean Ivory Tower. It means by someone more experienced than you. 
-Ask for explanation. Ask to involve. 
-
+class: inverse, middle, center
+# Run short design sessions before diving into implementation.
+???
+- All-the-way down.
+- I should point out that there is nothing whatever wrong with spending a few hours, or even a day or two, pondering the shape of your system. There’s nothing wrong with drawing some UML, or other diagrams in order to get some ideas about how your system should be structured. I don’t want you doing this for months, but there’s nothing wrong with thinking. 
 ---
-# Organizationally Disconnected Architecture
-(Inverse) Conway's Law.
-Architecture that doesn’t fit it’s business (example - Debt Collection).
 
-
-Separate the components of your architecture according to their
-differing rates of change.
-Focus on the form of what the system is, partitioning it so that each
-part can be managed as autonomously as possible.
-
-
-The dominant consideration in supporting team autonomy is the
-locality with which common changes are handled.
-
-
-Be attentive to domain partitioning. In particular, don’t split a domain
-across geographic locations or across architectural units.
-
-
-Just on basic management principles,
-you want your organizational structure to reﬂect the structure of the
-business. Ifwe structure organizations around domains, then by Conway’s
-Law we have aligned the business structure, the organizational structure,
-and the architecture!
-
-
+class: inverse, middle, center
+# Run weekly meetup on issues and plan how to get better in small steps.
+???
 ---
+
 # Solutions
+- 
 
-- ASK TO BE INVOLVED. UNDERSTAND THE BIG PICTUTE. CHALLENGE DECISIONS.
-- Run short design sessions before diving into implementation (all-the-way-down)
-- Run weekly meetup on issues and plan how to get better in small steps.
-the overal architecture is complex. Changing architecture is hard. You have to PULL architecture into expected direction. If you're afraid or don't believe - you already lost.
-- Define expected / ideal architecture (end-state). Make it visible. Define actual architecture. Measure how far you are.
-- Ask for architect if you don't have one (ask manager for architectural review). Do you want to work with sexy system or drown in BBoM? 
-- Sometimes you just need external help (it's not in our culture yet). Go for it.
-- What to fix??? Fix TRUE constraint (the most annoying thing).
 - Architecture evolves: Go WIki. Document significant decisions and agreements.
-However, I should point out that there is nothing whatever wrong with spending a few hours, or even a day or two, pondering the shape of your system. There’s nothing wrong with drawing some UML, or other diagrams in order to get some ideas about how your system should be structured. I don’t want you doing this for months, but there’s nothing wrong with thinking. (see: Hammock Driven Development)
-‘‘all hands on deck’’ mentality — everyone is in some small part an architect, and that everyone has a crucial role to play in good project beginnings
+
+
 
 ---
 
