@@ -14,6 +14,10 @@
         font-weight: normal;
       }
 
+      a {
+        color: #a6e22e;
+      }
+
       .inverse {
         background: #272822;
         color: #f3f3f3;
@@ -98,7 +102,16 @@
         margin: 0;
       }
 
+      .training img {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 150px;
+      }
 
+      .c4 img {
+          width: 1400px
+      }
 
     </style>
   </head>
@@ -580,7 +593,7 @@ class: center, middle, inverse
 class: center, middle, inverse
 # Keep services .important[mind-sized] so there is no need for internal layering. Break services into tiny .important[modules].
 
-### (and keep modules in separate VCS tree)
+### (and consider keeping modules in separate VCS tree)
 ???
 You can split horizontally or vertically by forming service hierarchy. Utility modules for  with Time, Queues, Caching can plugged similar to 3rd party to keep your system simpler.
 
@@ -658,56 +671,98 @@ class: middle, center, inverse
 You can use test doubles and contract testing.
 
 ---
-
+class: middle, center, antipattern
 # Undocumented Architecture
+???
+- Story about Alex Bosy (onboarding, discussions, negotiations, recalling)
+- Partner-Outsourcing teams, IT Support, Compliance, Risk and Audit, Investors needs docs.
+- Well, you can do it. But it's too expensive for the company and annoying for you.
 
-...over comprehensive documentation...
+---
+class: middle, center, inverse
+# Working software over .important[comprehensive] documentation.
+### (c) Agile Manifesto
+???
+- Prefer != Replace
+- Word comprehensive is important - it says that working software is more important than EXCESSIVE/TOO MUCH DOC, but not over good one.
 
-VISUALIZE BASED ON OUR APPROACH
+---
+class: middle, center, inverse
+# Architecture is code!
+### ...but level of abstraction of code is negligible
+???
+Even in the widely accepted GoF book, we find that ‘‘it’s clear that code won’t reveal everything about how a system will work.’’ We go to the code for what and how, but only the documentation tell us why. Just following the code is a bit like following a path through the woods at night. 
 
-We are good at visualizing our process". We're really BAD at visualizing software we're building!
-"That’s the page I read that made the difference"
-Story about Alex Bosy (onboarding, discussions, negotiations, recalling). Simon's Brown work.
-Invisible architecture (architecture is code)... Well, at least some diagrams please!!! 
-Level of abstraction of code is negligible. Too small.
-Even in the widely accepted Gang of Four book, we find that ‘‘it’s clear that code won’t reveal everything about how a system will work.’’ (Gamma et al 2005, p. 23) We go to the code for what and how, but only the authors or their documentation tell us why. Just following the code is a bit like following a path through the woods at night. 
-A point about documentation — try to document crucial parts. The rest of the time, it’s about getting everybody involved face-to-face. 
-Documentations aims to communicate perspectives and decisions, and make it easier to remember perspectives and decisions. It’s a reminder for those who were involved in documentation development and tutorial for those who weren’t. 
+---
+class: inverse
+# Code has hard time telling you about
 
-Current, Future (outsourcing, maintenance?!), Other teams, Compiance, Risk and Audit, Investors needs docs.
+---
+class: inverse
+# Code has hard time telling you about
+### - Backups, Disaster Recovery, Redundancy, Failover, ETL, SLA, etc.
 
-Print out MANY copies of your architecture. Pin one on the wall (focal point for conversations, MAP to source code, external dependencies to notify on changes) Feel free to draw on top of it.
+---
+class: inverse
+# Code has hard time telling you about
+### - .fade[Backups, Disaster Recovery, Redundancy, Failover, ETL, SLA, etc.]
+### - Significant Decisions and Agreements (e.g. rejected frameworks)
+???
+- Lessons learned
+- Code conventions and Principles to follow
+- Quality Standards
+- Definition of Done
 
-Docs get out of date. No one cares... No doc is better than shitty out-of-date doc. Must be part of DoD.
+---
+class: inverse
+# Code has hard time telling you about
+### - .fade[Backups, Disaster Recovery, Redundancy, Failover, ETL, SLA, etc.]
+### - .fade[Significant Decisions and Agreements (e.g. rejected frameworks)]
+### - Surroundings (Dependencies, Service Consumers)
 
-Onboarding page (Sights where to go)
-If we think about a software system, the practical information might include where the source code can be found, how to build it, how to deploy it, the principles that the team follow, etc. It’s all of the stuff that can help the development team do their job effectively., conventions etc.
-
-especially important with legacy codebases! because old code does not serve as an example.
-
-lessons learned (for newcomers)
-
-team (with on-duty person)
-backups, disaster recovery, redundancy, failover, etc.
-
-dont mix level of abstractions.
-
+---
+class: inverse
+# Code has hard time telling you about
+### - .fade[Backups, Disaster Recovery, Redundancy, Failover, ETL, SLA, etc.]
+### - .fade[Significant Decisions and Agreements (e.g. rejected frameworks)]
+### - .fade[Surroundings (Dependencies, Service Consumers)]
+### - Onboarding (Source Repository, Building, QA, Deployment)
 
 
 ---
-# UML?!
+class: inverse
+# Code has hard time telling you about
+### - .fade[Backups, Disaster Recovery, Redundancy, Failover, ETL, SLA, etc.]
+### - .fade[Significant Decisions and Agreements (e.g. rejected frameworks)]
+### - .fade[Surroundings (Dependencies, Service Consumers)]
+### - .fade[Onboarding (Source Repository, Building, QA, Deployment)]
+### - Birdseye Technical View
 
-NoUML.
-UML is invented so people can collaborate easily. How can you collaborate if no one gets UML? It's really hard to remember it!!! 
-Complex I think conventions work against you.??? It's not COOL.
-Boxes, Arrows, Colors (consistent).
+---
+class: inverse, center, middle
+# .strike[UML] vs .important[C4]
+### Context, Containers, Components, Classes
 
-Is UML really whiteboard friendly? Can is sketch fast??
-Oh, and don’t think that using Microsoft Visio will help! It often makes things worse because now people have the tool to struggle with too. 
+???
+- No one gets UML, you have to remember all these conventions. UML is not cool. 
+- Visio and tools will make things even worse - now you have tools to struggle with too.
+- Find something that works for you > following world-wide rigit conventions
+- C4 a set of consistent abstractions.
 
-Simon Brown's Book (Sketching)
-
-Alternative: C4, Brown
+---
+### .important[http://static.codingthearchitecture.com/c4.pdf]
+.c4[![](c4.png)]
+???
+- In Java, you if you stick to structure we discussed before, you can even generate some diagrams
+- Encourage you to learn more about C4. Simon Brown has exceptional sketching section in SaFD
+---
+class: inverse, center, middle
+# "That’s the page I read that .important[made the difference]" 
+### is a great .important[sanity check]
+???
+- Document only crucial parts. The rest of the time involve everybody face-to-face.
+- Documentation is a reminder for those who were involved in documentation development and tutorial for those who weren’t. 
+- No doc is better than shitty out-of-date doc. Must be part of DoD. (team don't doc because it's requires practice)
 
 ---
 
@@ -726,49 +781,109 @@ class: center, middle, antipattern
 ???
 * I feel that there are some rules,  but can't explain. And no one actually can. When I talk to colleagues, we end up in weird discussions (usually endless). 
 * Lack of shared understanding. No reasonable explanation for decisions made by someone (usually some hero who drives all the architecture, which doesn't usually mean Ivory Tower, just someone more experienced than you)
+* The problem is that architecture must evolve controllably. How can you take control over something you don't really understand? 
 
 ---
 class: center, middle, inverse
 # Wear software architect's hat by understanding and impacting current state of affairs.
 ???
-- ‘‘all hands on deck’’ mentality — everyone is in some small part an architect, and that everyone has a crucial role to play in good project beginnings
+- Apply ‘‘all hands on deck’’ mentality — everyone is in some small part an architect, and that everyone has a crucial role to play in good project beginnings. 
 - Engage into decision making. Be proactive and ask for rational explanation. Challenge decisions.
 - It's important to handover more decisions to teams (start small, then more and more)
 - Sometimes things are pretty messy or architecture is driven by Ivory Tower. Go for external help / coaching - ask for experie if you don't have one (ask manager for architectural review). Do you want to work with sexy system or drown in BBoM? 
 
 ---
 class: inverse
-# How to make things better?
-### - Visualize actual architecture. 
-### - Visualize expected / ideal architecture.
-### - Iterate towards ideal.
+# What if actual architecture sucks?
 ???
-The overal architecture is complex. Changing architecture is hard. You have to PULL architecture into expected direction. If you're afraid or don't believe - you already lost.
+The overal architecture is complex. Changing architecture is hard. If you're afraid or don't believe in opportunity - you already lost. You have to PULL architecture into expected direction. 
+
+---
+class: inverse
+# What if actual architecture sucks?
+### - Visualize actual architecture. 
+
+---
+class: inverse
+# What if actual architecture sucks?
+### - .fade[Visualize actual architecture.]
+### - Visualize expected / ideal architecture.
+???
+- Especially important with legacy codebases! because old code does not serve as an example.
+- Print out many copies of your architecture and pin one on the wall
+- Focal point for conversations
+- Feel free to draw on top of it.
+---
+class: inverse
+# What if actual architecture sucks?
+### - .fade[Visualize actual architecture.]
+### - .fade[Visualize expected / ideal architecture.]
+### - Iterate towards ideal.
 
 ---
 class: inverse, middle, center
 # Run short design sessions before diving into implementation.
 ???
+- Together in order to share knowledge, discuss painful questions, make sure you share the same vision.
 - All-the-way down.
 - I should point out that there is nothing whatever wrong with spending a few hours, or even a day or two, pondering the shape of your system. There’s nothing wrong with drawing some UML, or other diagrams in order to get some ideas about how your system should be structured. I don’t want you doing this for months, but there’s nothing wrong with thinking. 
----
 
+---
 class: inverse, middle, center
 # Run weekly meetup on issues and plan how to get better in small steps.
 ???
----
-
-# Solutions
-- 
-
-- Architecture evolves: Go WIki. Document significant decisions and agreements.
-
-
+- Trello with small tech tasks
+- It doesn't mean that you have to stop development or ask for management approval.
+- Let's do some school math
 
 ---
+class: inverse
+# Change the architecture with baby steps
+
+---
+class: inverse
+# Change the architecture with baby steps
+### ~ 45 minutes a day / person
+???
+- Don't believe you can work on business tasks for 8 hours. If you can, it's counterproductive.
+
+---
+class: inverse
+# Change the architecture with baby steps
+### ~ .fade[45 minutes a day / person]
+### ~ 4 hours a week / person
+
+---
+class: inverse
+# Change the architecture with baby steps
+### ~ .fade[45 minutes a day / person]
+### ~ .fade[4 hours a week / person]
+### ~ 20 hours a week / 5 people
+
+---
+class: inverse
+# Change the architecture with baby steps
+### ~ .fade[45 minutes a day / person]
+### ~ .fade[4 hours a week / person]
+### ~ 20 hours a week / 5 people
+# No excuse for not starting .important[tomorrow].
+???
+- Architect working part-time :)
+- Without even impacting business development, you can make you architecture a pleasure to work with!!! 
 
 
-- Java Software Architecture Training (Discount 20%).
+---
+class: center, middle, inverse, training
+# Software Architecture Essentials
+### 11th of March, 2015
+### Register at .important[[www.craftsmans.lv](http://www.craftsmans.lv)]
+![](discount.png)
+
+---
+class: center, middle, inverse, antipattern
+# Thank you!
+???
+I have I've challenged your thinking a bit. Thank you!
 
     </textarea>
     <script src="http://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
