@@ -113,6 +113,15 @@
           width: 1400px
       }
 
+
+      .alchemy h1 {
+        font-size: 90px;
+      }
+
+      .alchemy img {
+        width: 600px;
+      }
+
     </style>
   </head>
   <body>
@@ -765,9 +774,15 @@ class: inverse, center, middle
 - No doc is better than shitty out-of-date doc. Must be part of DoD. (team don't doc because it's requires practice)
 
 ---
-
+class: middle, center, antipattern
+background-image: url('optimism.jpg')
 # Optimistic Architecture
 
+---
+class: middle, center, inverse
+# .important[Fault tolerance] is a lesson best learned .danger[OFFLINE].
+
+---
 You can't prevent/neglect failure. Embrace it!  (cascades, integrations, pools) etc... What happens if you run out of connection in pool? Everything fails!!!
 Everything will fail glamorously.
 Capacity planning - load on other nodes when some nodes goes out out service?.
@@ -776,16 +791,18 @@ fault tolerance is a lesson best learned offline
 One interesting concept they introduced is the Blast Radius. During their failure testing they explicitly analyze how far that failure reaches into the application landscape. With that information, they've tried to tune the interfaces between components to become a bit more resilient.
 
 ---
-class: center, middle, antipattern
+class: center, middle, alchemy
+
 # Alchemy Architecture
+![](fuckscience.gif)
 ???
-* I feel that there are some rules,  but can't explain. And no one actually can. When I talk to colleagues, we end up in weird discussions (usually endless). 
 * Lack of shared understanding. No reasonable explanation for decisions made by someone (usually some hero who drives all the architecture, which doesn't usually mean Ivory Tower, just someone more experienced than you)
+* I feel that there are some rules, but can't explain. And no one actually can. When I talk to colleagues, we end up in weird discussions (usually endless). When someone finds reasonable explanation, he is treaten as a wizard with a superpowers. People start looking for magic ball on your desk.
 * The problem is that architecture must evolve controllably. How can you take control over something you don't really understand? 
 
 ---
 class: center, middle, inverse
-# Wear software architect's hat by understanding and impacting current state of affairs.
+# Wear software architect's hat by .important[understanding] and .important[impacting] current state of affairs.
 ???
 - Apply ‘‘all hands on deck’’ mentality — everyone is in some small part an architect, and that everyone has a crucial role to play in good project beginnings. 
 - Engage into decision making. Be proactive and ask for rational explanation. Challenge decisions.
