@@ -8,6 +8,10 @@
       @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
+      .remark-slide-number {
+        display: none
+      }
+
       body { font-family: 'Droid Serif'; }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
@@ -16,6 +20,36 @@
 
       a {
         color: #a6e22e;
+      }
+
+      .offline img {
+        width: 100%;
+        height: 300px
+      }
+
+      .giphy {
+        background-size: 100%;
+      }
+
+      .yagni {
+        background-size: 140%;
+      }
+
+      .nano, .boundless {
+       background-size: 140% 
+      }
+
+      .structureless, .documents {
+       background-size: 160%  
+      }
+
+      .transparency {
+        padding: 0;
+      }
+
+      .transparency h1 {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 50px 0 60px 0;
       }
 
       .inverse {
@@ -29,6 +63,9 @@
       }
 
 
+      .maslow {
+        background-color: black;
+      }
 
       .ide {
         background-color: #4D5052;
@@ -114,12 +151,27 @@
       }
 
 
+      .releaseit p {
+        margin: 0;
+      }
+
       .alchemy h1 {
+        color: #fff;
         font-size: 90px;
       }
 
-      .alchemy img {
-        width: 600px;
+      .thankyou {
+        padding: 0;
+      }
+
+      .thankyou img {
+          position: relative;
+          left: -300px;
+          width: 180%;
+      }
+
+      .thankyou p {
+        margin: 0;
       }
 
     </style>
@@ -134,46 +186,62 @@ background-image: url('izbushka.jpg')
 # Anti-Patterns
 ]
 
-
-
 .author[
 ### Eduards Sizovs 
 ### eduards.sizovs@gmail.com
 ### @eduardsi 
 ]
-
----
-# "I have already did that" Architecture
-... Golden Hammer
-... "Instagram did that" architecture.
-Experience influences software design. 
-Such companies usually do marchitecture. By marchitecting by fact you ran reject developers - they are AFRAID of things they don't know. 
-
----
-class: center, middle, antipattern
-# YAGNI Architecture
 ???
-We are all developers, and buzzwords are our fetish. Regardless of app/business complexity:
+- Hello everyone. I am excited that you chose to stay here, instead of drinking beer from outside.
+- A list of my favourite SA anti-patterns
+- I am lucky guy, working with enteprise, startup or spacerocket launch station projects. 
+- Interestingly, most of them suffer from the same desease.  All the time, the same rakes.
+- I'd appreciate if keep questions until Q&amp;A section, otherwise we might run out of time.
 
-- Everything asynchronous and non-blocking (callback hell, debugging hard)
-- Micro services (huge # of moving parts). 
-- MongoDB (just a couple JSON documents)
-- 99.99999 uptime for service that don't need that (maintenance page)
 
-Luckily your company understands that it's the only way to keep you motivated and steps back. 
-Otherwise you hit the wall and all initiaves are rejected. You say your employer, architect, colleages suck and doesn't get your idea.
+---
+class: center, middle, antipattern, transparency, giphy, yagni
+background-image: url('yagni.gif')
+# YAGNI Architecture
 
-Story about Marcin (without emotions, can you convince yourself that MS are really needed? How you convince customer if you don't trust yourself?)
+???
+- We are all IT people, and buzzwords, trends and shiny posters is our 2nd nature. Buzzword fetishism. 
+- Regardless of app/business domain, we'd love our application to be:
+- - Asynchronous and non-blocking (debugging a nightmare - wtvr, it's trendy)
+- - Based Micro services (huge # of moving parts - wtvr, it's trendy). 
+- - Backed by some NoSQL storage like MongoDB (few JSON documents - wtvr, it's trendy)
+- - Delivered continuously and giving 5 nines uptime (it's fine to have a maitenance window - wtvr - it's trendy)
+
+- You're lucky if  your company understands that it's the only way to keep you motivated and steps back. Or, that "marchitecture" will increase hiring rates.
+- Otherwise, you hit the wall and get all fetishism-driven initiatives rejected. You say your employer, architect and team suck hard because they re conservative bastards.
+
+---
+class: center, middle, inverse
+# Story time
+???
+- technicall good ex-colleague of mine produced a tweet:
+- how to convince customers to break monolithic application into micro services?
+- I replied: find one service that is a limiting contraint (that makes you slow), rip it out, then stop and watch. 
+- it made him sad, because he was soo enthusiastic about MS, that he haven't ever thought about business case.
+- he went: well, we'll figure it out though. what he said: I will exagerrate the problem and make business pay for something that's not really needed.
+- it made me sad. That's why I share it with you.
+
 
 ---
 class: center, middle, inverse
 # Some software is never intended to stand out from the crowd.
 ???
-Enlightment comes when you realize that some software never intended and will never to stand out of the crowd.
+- Enlightment comes when you realize that some software is never intended and will never stand out of the crowd. Chances are it's software you're working on right now.
+- Solution: you can quit. Really, stop CRUD apps and apply for job at Google if you want innovations. Don't lie to yourself and waste someone's money.
+- If you want your software to be on the bleeding edge, your business must be too. Starting making business more innovative. Technical innovation will follow.
+
 
 ---
 class: center, middle, inverse
 # .strike[YAGNI] .important[KIND ASS] Architecture 
+???
+- The alternative to YAGNI architecture is KIND ASS architecture. 
+- Don't try to Google it, LatCraft copyrighted acronym
 
 ---
 class: center, middle, inverse
@@ -182,64 +250,95 @@ class: center, middle, inverse
 ---
 class: center, middle, inverse
 # .important[NEED]-DRIVEN ?
-### REQUIREMENTS &bull; RISKS &bull; CONSTRAINTS
 
 ???
-Architecture in the sake of architecture" doesn't work. It must be purposeful!! We have to become better at understanding needs.
-
-Requirements 
-- 99.99999 uptime? 100% data consistency? What data do we have? 
-- Do you have high concurrency? What kind of ops? Can we isolate ops into separate service etc?
-
-Risks 
-- Integrations may fail and API change unexpectidly, Infrastructure may fail 
-- Technology you must use evolve slowly
-- MongoDB experts can win a lottery etc.
-
-Constraints 
-- Does Google have the same constraints as your company? Dev capacity? Money?
-- Do you have domain expert in-house?
-
-Shared understanding of aforementioned forces make discussions constructive and teams aligned.
-
+- Let's get back to software architecture basics.
+- Architecture in the sake of architecture" doesn't work. It must be purposeful!! We have to become better at understanding needs.
 
 ---
 class: center, middle, inverse
-# Maslow's Hierarchy of Needs of Software Development
+# .important[NEED]-DRIVEN ?
+### REQUIREMENTS
+
+???
+- 99.99999 uptime? 100% data consistency? What data do we have before choosing storage? 
+- Do you have high concurrency? What kind of ops? Can we isolate ops into separate service etc?
+
+---
+class: center, middle, inverse
+# .important[NEED]-DRIVEN ?
+### REQUIREMENTS &bull; RISKS 
+
+???
+- Integrations, Infra may fail, API can change unexpectidly
+- Lead Developers drives fast motorbike
+- MongoDB experts can win a lottery etc.
+
+---
+class: center, middle, inverse
+# .important[NEED]-DRIVEN ?
+### REQUIREMENTS &bull; RISKS &bull; CONSTRAINTS
+
+???
+- Does Google have the same constraints as your company? Dev capacity? Money?
+- Do you have domain expert in-house?
+- Do you have tight deadlines?
+
+- I think most holy wars and long unconstructive discussions come from not understanding aforementioned forces.
+- If someone says you - "But Instagram did that" and you have nothing to say against, probably you don't understand REQ RISK AND CONSTRAINTS at your project. Wake up, dig this and make sure everyone is on the same page.
+
+
+---
+class: center, middle, inverse, maslow
+# Maslow's Hierarchy of Needs (of Software Development)
 ![](maslow.png)
+
+http://gojko.net/2012/05/08/redefining-software-quality/
+
+???
+- Another view on organizational/project needs is MHoNoSD.
+- Examples - deployable vs. successful, usable. vs useful, convincing switching to micro services when business is growing rapidly.
+- Your project can have its own pyramid. By understanding where you are and what's the next step, you don't have to waste time and $ on building "rockets" in the sky.
 
 ---
 class: center, middle, inverse
 # .important[SIMPLE] ?
 
 ???
-Often we work in highly demanding and inpredictable environments when a notion of "need" is not well understood.
-At this stage the LAST thing you want to deal with are:
-- Getting stuck with technologies you don't know (really tempting)
-- Be parallelysed by choosing among alternatives
+Often we work in highly demanding and inpredictable environments when a notion of "need" is not well understood. Well, a startup.
+At this stage the LAST thing you want:
+- Get struggled with technologies you don't know (really tempting)
+- Stuck with choosing among million alternative frameworks
 - Implement stuff for future. Because you don't know anything about the future.
 
 ---
 class: center, middle, inverse
 # Pick the tool you .important[know well] and ship the .important[simplest possible solution]. 
 ???
-The winners is one who achived the goal, and not the one who fucks with computers day and night. 
+- You will have a bunch of things to learn besides technology.
+- It might seem pretty cool to experiment with new stuff. The winners is one who achived the goal, and not the one who fucks with computers all night long. 
 
 ---
 class: center, middle, inverse
 # Optimize for .important[CHANGE].
 ???
-Don't waste time on making architecture generic/flexible (you don't know about the future and flexibility make things complex). 
-Spend time on making it EASY TO UNDERSTAND and CHANGE.
+- Don't waste time on making architecture generic/flexible
+- - Future is unpredictable
+- - Flexibility makes thigns more complex
+- Spend time on making things EASY TO UNDERSTAND and CHANGE / REPLACE.
 
 
 ---
-class: center, middle, antipattern
+class: center, middle, antipattern, giphy, nano, transparency
+background-image: url('nanoservices.gif')
 # Nano-Service Architecture
 ### When SOA goes wild.
 ???
-Almost all MS architecture goes Nano-services because it's insane to hear that a service must be of some size. SIZE of a service means NOTHING as long as it does one thing and does it well.
-That said, there are many benefits, but mostly we get only troubles.
+- **Going against** army of **buzzword fetishists**
+- Almost all MS architectures **end up Nano-service architectures**
+- It's **insane** to hear that a service MUST BE OF CERTAIN SIZE
+- SIZE means NOTHING as long as it DOES ONE THING AND DOES IT WELL.
+- That said, there are **many benefits**, but mostly **we get only troubles**.
 
 ---
 class: center, middle, inverse
@@ -248,7 +347,7 @@ class: center, middle, inverse
 ### — Suﬁ teaching story
 
 ???
-Applied to MS, you just multiple problems because you have to know how every pair of MS will work with each other.
+If we apply this story to MS, we just multiple problems because you have to know how every pair of MS will work with each other.
 
 ---
 class: center, middle, inverse
@@ -261,7 +360,10 @@ class: center, middle, inverse
 # .strike[Micro] .important[Service-Oriented] Architecture 
 ### SIZE DOESN'T MATTER
 ???
-Let's return to good old SOA which has nothing to do with SOAP, but is less confusing. 
+- Let's return to good old SOA which has nothing to do with **SOAP** and **SIZE**
+- Less confusing. No micro, nano, bla-bla.
+- Forget about size, because there are well-defined driving factors for decompotions...
+
 
 ---
 class: inverse
@@ -313,82 +415,22 @@ class: inverse
 ### - .fade[Different (cross-functional) requirements]
 ### - .fade[Different technical stack]
 ### - Prototyping / Experiments
+???
+I want to **quickly create new service** in the sake of experiment, see how it works and then either **throw it away** or **implement properly as part of the main application**.
 
 ---
 class: center, middle, inverse
 # Staying .important[BIG is OK].
+???
+- Myriads of small services complicate things, benefits of SOA are not in size. Decompose wisely.
 
 ---
-class: center, middle, antipattern
+class: center, middle, antipattern, giphy, transparency, structureless
+background-image: url('structureless.gif')
 # Structureless Architecture
 ???
-Let's see what software structure really is
-
----
-class: inverse
-# Software Structure determines
-
----
-class: inverse
-# Software Structure determines
-### - how artifacts are grouped together
-
----
-class: inverse
-# Software Structure determines
-### - .fade[how artifacts are grouped together]
-### - how artifacts depend on each other
-
----
-class: inverse
-# Software Structure determines
-### - .fade[how artifacts are grouped together]
-### - .fade[how artifacts depend on each other]
-### - how artifacts build into higher level artifacts 
-???
-In reality most teams do not care about the structure and throw a bunch of components into a bag and shake it until it works.
-
----
-class: inverse
-# Good software structure should
-
----
-class: inverse
-# Good software structure should
-### - reveal .important[high-level components]
-
-???
-- Your structure (let's say, packaging) should tell a story, revealing high-level components of your architecture and eliminate model-code gap.
-
----
-class: inverse
-# Good software structure should
-### - reveal .important[high-level components]
-### - reduce .important[discovery cost]
-
-???
-- Discovery cost determines how fast can you ﬁnd the code for a particular problem area to make an improvement, the source of a fault. In other words, how fast you can find a home for new code. High discovery cost impacts productivity, kills morale and, when you can't find the right place, you cut corners.
-
----
-class: inverse
-# Good software structure should
-### - reveal .important[high-level components]
-### - reduce .important[discovery cost]
-### - improve .important[comprehensibility]
-
-???
-- Comprehensibility allows studying the system one part at a time. The whole system can therefore be better designed because it is better understood.
-
----
-class: inverse
-# Good software structure should
-### - reveal .important[high-level components]
-### - reduce .important[discovery cost]
-### - improve .important[comprehensibility]
-### - enable .important[poka-yoke]
-
-???
-- The central guiding Lean principle at work in the domain architecture is poka-yoke: enabling constraints. As programmers rush to get a feature to market they are likely to be less attentive to the gross system structure and form than to the correctness of the business logic.
+- Either complete lack of explicit structure
+- Or it suck at the extend when you can't benefit from it
 
 ---
 class: middle, ide
@@ -398,7 +440,7 @@ class: middle, ide
 .right-column[
 ]
 ???
-It't funny, because it shows that all applications have the same components which is a false statement, of course
+Let's burn this approach in fire!
 
 ---
 class: middle, ide
@@ -408,6 +450,10 @@ class: middle, ide
 .right-column[
   ### .danger[&cross;] reveal .important[high-level components] 
 ]
+???
+- Structure (let's say, packaging) should tell a story about YOUR PARTICULAR DOMAIN and say "MY APPLICATION IS DOING A, B AND C"
+- My app is doing "Controllers", "DAO" and "DOMAIN". It's ridiculous!
+
 
 ---
 class: middle, ide
@@ -418,6 +464,9 @@ class: middle, ide
   ### .danger[&cross;] reveal .important[high-level components] 
   ### .danger[&cross;] reduce .important[discovery cost]
 ]
+???
+- How fast can you ﬁnd **the code for a particular problem area** or **the source of a fault**
+- How often source of problem is a particular layer? 
 
 ---
 class: middle, ide
@@ -429,6 +478,9 @@ class: middle, ide
   ### .danger[&cross;] reduce .important[discovery cost]
   ### .danger[&cross;] improve .important[comprehensibility]
 ]
+???
+- Comprehensibility allows studying the system one part at a time. 
+- Functionality I want to study (let's say REGISTRATION) is scattered among layers. Exceptions here, data access there. It's nightmare!
 
 ---
 class: middle, ide
@@ -441,6 +493,10 @@ class: middle, ide
   ### .danger[&cross;] improve .important[comprehensibility]
   ### .danger[&cross;] enable .important[poka-yoke]
 ]
+???
+- The central guiding Lean principle (enabling constraints). Good structure should save you from doing crap when you're in rush. 
+- I don't even see existing interconnections between functionality (ok, will put it wherever I like)
+- It's quite a big challenge to express and enforce functional dependencies
 
 ---
 class: middle, ide
@@ -450,8 +506,8 @@ class: middle, ide
 .right-column[
 ]
 ???
-Think in services.
-screaming architecture, functional structure / hierarchy is visible.
+- It reveals what your app is doing - it screams about services your application provides. 
+
 
 ---
 class: middle, ide
@@ -461,6 +517,8 @@ class: middle, ide
 .right-column[
   ### .green[&#10004;] reveal .important[high-level components] 
 ]
+???
+- You can easily see **functional structure**, even hierarchy (registration is part of user functionality)
 
 ---
 class: middle, ide
@@ -473,7 +531,7 @@ class: middle, ide
 ]
 
 ???
-- Maps the architecture onto a domain model that reduces the time and expense of determining where new functionality should be added (especially if we care about dependencies)
+- let's say, if the problem is with meetups, go to meetup functionality, see what it's doing.
 
 ---
 class: middle, ide
@@ -487,7 +545,7 @@ class: middle, ide
 ]
 
 ???
-- Analyze the code with respect to functional requirements, when all related dependencies are co-located.
+- don't care about stuff that doesn't make sense for your problem.
 
 ---
 class: middle, ide
@@ -501,14 +559,18 @@ class: middle, ide
   ### .green[&#10004;] enable .important[poka-yoke]
 ]
 ???
-- Such approach FORCES us to think about functional aspects and their interconnections that is often left forgotten.
+- Such approach FORCES us to think about functional aspects and their interconnections. 
+- You can't just drop new stuff to whatever package and **shake it until it works**. 
+- (you can but it **must be done intentionally and with care** :)
 
 ---
 class: center, middle, inverse
 ## Apply .strike[micro] .important[service-oriented] mindset to software structure. Keep services decoupled as if they were remote.
 ???
-- Path towards micro-services. You'll see what your app is doing and whether it's doing too much.
-- Interestingly, you have to keep services decoupled let them talk via API, exchange with events and try eventual consistency.
+- Path towards SOA (much more easier to rip services out). 
+- You'll see what your app is doing and whether it's not doing too much.
+- Interestingly, you can keep services decoupled and let them talk via REST API, exchange with events and try eventual consistency across bounded contexts.
+
 
 ---
 class: center, middle, inverse
@@ -516,11 +578,12 @@ class: center, middle, inverse
 ![](shockedface.jpg)
 
 ---
-class: center, middle, antipattern
-background-image: url('lasagna.jpg')
+class: center, middle, antipattern, giphy, transparency
+background-image: url('lasagna.gif')
 # Lasagna Architecture
 ???
-Logical architecture which has several (too many well-defined and separable layers, where each layer of code accesses services in the layers below through well-defined interfaces. The analogy stems from the layered structure of lasagna, where different ingredients (for example, meat, sauce, vegetables, or cheese) are each separated by strips of pasta. Also known as "onion code" because one often cries when opening so many layers.
+- too many layers
+- We can also call it "onion architecture" because when we open so many layers, we cry.
 
 I think we tend to overuse layering and do not benefit from it.
 
@@ -563,7 +626,7 @@ class: inverse
 ### - .fade[Decoupling for reuse (ha-ha)]
 ### - Separation of concerns (is particular layer our concern?)
 ???
-- SoC -> we end up with our concerns (functionality) scattered among layers
+In reality our concerns get scattered among different layers.
 
 ---
 class: inverse
@@ -573,7 +636,7 @@ class: inverse
 ### - .fade[Decoupling / abstracting for independent evolution (ha-ha)]
 ### - .fade[Decoupling for reuse (ha-ha)]
 ### - .fade[Separation of concerns (is particular layer our concern?)]
-### - Related stuff co-location (are layers really related?)
+### - Related stuff co-location (are DAOs really related?)
 
 ---
 class: inverse
@@ -583,20 +646,21 @@ class: inverse
 ### - .fade[Decoupling / abstracting for independent evolution (ha-ha)]
 ### - .fade[Decoupling for reuse (ha-ha)]
 ### - .fade[Separation of concerns (is particular layer our concern?)]
-### - .fade[Related stuff co-location (are layers really related?)]
+### - .fade[Related stuff co-location (are DAOs really related?)]
 ### - Constraint enforcement (is there a better way?)
 ???
-- CoE -> SQL cannot be written in domain model (do we really need a separate layer or just a constraint / best practice? or naming convetions, annotations, import control is OK?)
+- UI shouldn't execute SQLs
+- Makes sense, but if we'll create layer for every constraint we'll crush under heavy lasagna layers.
 
 
-DON'T FORGET THAT WE CAN EXTRACT PARTS INTO SEPARATE LIBRARIES OR KEEP LIBRARY INTERNAL.
 
 ---
 class: center, middle, inverse
 # Layering is your service's .important[detail] and is .important[internal] to the service.
 ???
-- Different services require differnet layering. That's why usually you have to move the stuff through all layers. By choosing single layering strategy we oversimplify the system and force layering model that looks god damn stupid for some services.
-- it doesn't mean that services can't follow holistic approach.
+- Consider letting services to choose their own layering
+- Different services might require different layering or no layers at all.
+- If my service is based on CQRS, then introducing service layer for queries is stupid (happens due to UBIQUTIOUS LAYERING)
 
 ---
 class: center, middle, inverse
@@ -604,103 +668,32 @@ class: center, middle, inverse
 
 ### (and consider keeping modules in separate VCS tree)
 ???
-You can split horizontally or vertically by forming service hierarchy. Utility modules for  with Time, Queues, Caching can plugged similar to 3rd party to keep your system simpler.
-
----
-class: center, middle, antipattern
-# Boundless Architecture
-
----
-class: center, middle
-# The Big Escape
-![](boundaries.jpg)
-
----
-class: middle, center, inverse
-# Some parts of your system must never .danger[uncontrollably escape] to territories that are .danger[difficult to control].
-???
-Treat boundaries as danger zone. don’t send your code for use there.
+- One more suggestion -> 
+- You can split horizontally or vertically by forming service hierarchy. 
+- Utility modules for  with Time, Queues, Caching can plugged similar to 3rd party to keep your system simpler.
 
 
 ---
-class: inverse
-# .danger[(!)] Don't try this at home
-
----
-class: inverse
-# .danger[(!)] Don't try this at home
-### - Services know too much about each other
-
----
-class: inverse
-# .danger[(!)] Don't try this at home
-### - .fade[Services know too much about each other]
-### - Domain entities automatically map to RESTful Representations
-
-???
-Public APIs, like diamonds, are forever. Once  you expose something it's quite hard to rollback.
-
----
-class: inverse
-# .danger[(!)] Don't try this at home
-### - .fade[Services know too much about each other]
-### - .fade[Domain entities automatically map to RESTful Representations]
-### - Persistent entities go outside of TX boundaries
-???
-Otherwise you'll have to FEAR lazy loading if you have one.
-
----
-class: inverse
-# .danger[(!)] Don't try this at home
-### - .fade[Services know too much about each other]
-### - .fade[Domain entities automatically map to RESTful Representations]
-### - .fade[Persistent entities go outside of TX boundaries]
-### - UI is formed directly from transactional domain model
-???
-Which make model UI-pleasing. CQRS!!!??
-
----
-class: middle, center, inverse
-# .important[Be conservative] in what you expose. .important[Take control] over what you expose.
-
-???
-What happens when there are no boundaries? (example of domain model escaping)
-- Uncertainty
-- Fear (touch and break client apps)
-- Lost time (I have to go to apps and find usages of all domain methods...)
-- Security risks
-- Lack of comfort that impacts COMPREHENSIVENESS
-
----
-class: middle, center, inverse
-# Properly managed service boundaries make .important[integration testing unnecessary] (almost).
-
-### (because integration tests are scam -> .nolink[http://goo.gl/OiCmSH])
-???
-You can use test doubles and contract testing.
-
----
-class: middle, center, antipattern
+class: middle, center, antipattern, giphy, transparency, documents
+background-image: url('documents.gif')
 # Undocumented Architecture
-???
-- Story about Alex Bosy (onboarding, discussions, negotiations, recalling)
-- Partner-Outsourcing teams, IT Support, Compliance, Risk and Audit, Investors needs docs.
-- Well, you can do it. But it's too expensive for the company and annoying for you.
+
 
 ---
 class: middle, center, inverse
 # Working software over .important[comprehensive] documentation.
 ### (c) Agile Manifesto
 ???
-- Prefer != Replace
-- Word comprehensive is important - it says that working software is more important than EXCESSIVE/TOO MUCH DOC, but not over good one.
+- Prefer != Replace (when we can replace documentation with code - do it, otherwise, keep documentation)
+- Word COMPREHENSIVE is important - it says that working software is more important than EXCESSIVE doc, but not over good one. 
 
 ---
 class: middle, center, inverse
 # Architecture is code!
 ### ...but level of abstraction of code is negligible
 ???
-Even in the widely accepted GoF book, we find that ‘‘it’s clear that code won’t reveal everything about how a system will work.’’ We go to the code for what and how, but only the documentation tell us why. Just following the code is a bit like following a path through the woods at night. 
+- GoF says "We go to the code for what and how, but only the documentation tell us why".
+- Just following the code = **following a path through the woods at night**. 
 
 ---
 class: inverse
@@ -719,7 +712,7 @@ class: inverse
 ???
 - Lessons learned
 - Code conventions and Principles to follow
-- Quality Standards
+- Quality Standards (important with legacy codebases! old code is a bad example)
 - Definition of Done
 
 ---
@@ -735,7 +728,7 @@ class: inverse
 ### - .fade[Backups, Disaster Recovery, Redundancy, Failover, ETL, SLA, etc.]
 ### - .fade[Significant Decisions and Agreements (e.g. rejected frameworks)]
 ### - .fade[Surroundings (Dependencies, Service Consumers)]
-### - Onboarding (Source Repository, Building, QA, Deployment)
+### - Onboarding (Source Repository, Building, QC, Deployment)
 
 
 ---
@@ -744,8 +737,24 @@ class: inverse
 ### - .fade[Backups, Disaster Recovery, Redundancy, Failover, ETL, SLA, etc.]
 ### - .fade[Significant Decisions and Agreements (e.g. rejected frameworks)]
 ### - .fade[Surroundings (Dependencies, Service Consumers)]
-### - .fade[Onboarding (Source Repository, Building, QA, Deployment)]
+### - .fade[Onboarding (Source Repository, Building, QC, Deployment)]
 ### - Birdseye Technical View
+???
+- High-level components, integrations
+
+- Documentation tells a story much better than code. I hope you don't thing that stories would be better written in Java.
+- I once've been in situation when I had to document the whole app portfolio to investors. I was even considering committing suicide, but thankfully I didn't have a gun and a I loved my job.
+- Moralle = referring someone to doc or saying "HAVE YOU READ THE FCKN DOC" is great thing. It saves your time and your brain long-term memory capacity.
+
+---
+class: inverse, center, middle
+# "That’s the page I read that .important[made the difference]" 
+### is a great .important[sanity check]
+???
+- Great sanity check for documentation.
+- Document only crucial parts. 
+- The rest of the time involve everybody face-to-face (**a colleague of mine was good at writing docs so not to talk to people**)
+- No doc is better than shitty out-of-date doc. High quality documentation must be part of DoD.
 
 ---
 class: inverse, center, middle
@@ -753,104 +762,264 @@ class: inverse, center, middle
 ### Context, Containers, Components, Classes
 
 ???
-- No one gets UML, you have to remember all these conventions. UML is not cool. 
-- Visio and tools will make things even worse - now you have tools to struggle with too.
-- Find something that works for you > following world-wide rigit conventions
-- C4 a set of consistent abstractions.
+- A few words about UML.
+- No one gets UML, you don't have to remember all these conventions. UML is not cool. 
+- Visio and tools will make things even worse - in addition to UML conventions, you have tools to struggle with.
+- Finding something that works for you is more important than following rigit conventions
+- C4 is great alternative to UML.
+- I encourage you to get familiar with C4. It's a simple set of consistent abstractions for crafting diagrams. SB book.
 
 ---
 ### .important[http://static.codingthearchitecture.com/c4.pdf]
 .c4[![](c4.png)]
 ???
+- Example of fancy-looking Context Diagram.
 - In Java, you if you stick to structure we discussed before, you can even generate some diagrams
-- Encourage you to learn more about C4. Simon Brown has exceptional sketching section in SaFD
----
-class: inverse, center, middle
-# "That’s the page I read that .important[made the difference]" 
-### is a great .important[sanity check]
-???
-- Document only crucial parts. The rest of the time involve everybody face-to-face.
-- Documentation is a reminder for those who were involved in documentation development and tutorial for those who weren’t. 
-- No doc is better than shitty out-of-date doc. Must be part of DoD. (team don't doc because it's requires practice)
+
 
 ---
-class: middle, center, antipattern
-background-image: url('optimism.jpg')
+class: middle, center, antipattern, transparency, giphy
+background-image: url('optimism.gif')
 # Optimistic Architecture
-
----
-class: middle, center, inverse
-# .important[Fault tolerance] is a lesson best learned .danger[OFFLINE].
-
----
-You can't prevent/neglect failure. Embrace it!  (cascades, integrations, pools) etc... What happens if you run out of connection in pool? Everything fails!!!
-Everything will fail glamorously.
-Capacity planning - load on other nodes when some nodes goes out out service?.
-fault tolerance is a lesson best learned offline 
-
-One interesting concept they introduced is the Blast Radius. During their failure testing they explicitly analyze how far that failure reaches into the application landscape. With that information, they've tried to tune the interfaces between components to become a bit more resilient.
-
----
-class: center, middle, alchemy
-
-# Alchemy Architecture
-![](fuckscience.gif)
 ???
-* Lack of shared understanding. No reasonable explanation for decisions made by someone (usually some hero who drives all the architecture, which doesn't usually mean Ivory Tower, just someone more experienced than you)
-* I feel that there are some rules, but can't explain. And no one actually can. When I talk to colleagues, we end up in weird discussions (usually endless). When someone finds reasonable explanation, he is treaten as a wizard with a superpowers. People start looking for magic ball on your desk.
-* The problem is that architecture must evolve controllably. How can you take control over something you don't really understand? 
+- Optimistic about conditions in which your application will execute. 
+- - **constrained** (CPU, Memory, Networking)
+- - **unrealiable** (things will fail)
+- - **unpredictable environment** (things will never fail glamorously)
+
+- **Nowaday's frameworks are tuned for business development**
+- They force you to be too optimistic and neglect failure.
+
+
+---
+class: middle, center, inverse, transparency
+background-image: url('gonefishing.jpg')
+# .important[Fault tolerance] is a lesson best learned .important[offline].
+???
+- I can assure you that when your business goes fishing and stakeholders reach you by phone and ask "WTF IS GOING ON?", you don't want it to happen again and start to embrace failure immediately.
+
+---
+class: inverse
+background-image: url('questions.jpg')
+# Raise and keep your hand if you know -> 
+???
+Let's run quiz. Raise and keep your hand if you know:
+
+---
+class: inverse
+background-image: url('questions.jpg')
+# Raise and keep your hand if you know -> 
+- ### What connection and thread pools does your application have
+
+---
+class: inverse
+background-image: url('questions.jpg')
+# Raise and keep your hand if you know -> 
+- ### .fade[What connection and thread pools does your application have]
+- ### Approximate size
+
+---
+class: inverse
+background-image: url('questions.jpg')
+# Raise and keep your hand if you know -> 
+- ### .fade[What connection and thread pools does your application have]
+- ### .fade[Approximate size]
+- ### Utilization during peak load
+
+---
+class: inverse
+background-image: url('questions.jpg')
+# Raise and keep your hand if you know -> 
+- ### .fade[What connection and thread pools does your application have]
+- ### .fade[Approximate size]
+- ### .fade[Utilization during peak load]
+- ### When pools will approach the size limit 
+
+---
+class: inverse
+background-image: url('questions.jpg')
+# Raise and keep your hand if you know -> 
+- ### .fade[What connection and thread pools does your application have]
+- ### .fade[Approximate size]
+- ### .fade[Utilization during peak load]
+- ### .fade[When pools will approach the size limit]
+- ### How does your app behave when pools become full 
+
+---
+class: inverse
+background-image: url('questions.jpg')
+# Raise and keep your hand if you know -> 
+- ### .fade[What connection and thread pools does your application have]
+- ### .fade[Approximate size]
+- ### .fade[Utilization during peak load]
+- ### .fade[When pools will approach the size limit]
+- ### .fade[How does your app behave when pools become full]
+- ### How to timely react on it
+???
+- Only a few hands. In reality either no one knows or just a one-two seniors in the team.
+- which often leads to ->
+
+---
+class: middle, center, offline
+![](503.png)
+???
+- Aside from pools, you have to care about other shitty situations, e.g.
+
+
+---
+class:inverse
+background-image: url('danger.jpg')
+- ### What if an integration point will start to fail?
+
+---
+class:inverse
+background-image: url('danger.jpg')
+- ### .fade[What if an integration point will start to fail?]
+- ### What if it will send slow response for 5+ minutes without failing?
+
+---
+class:inverse
+background-image: url('danger.jpg')
+- ### .fade[What if an integration point will start to fail?]
+- ### .fade[What if it will send slow response for 5+ minutes without failing?]
+- ### What if it will send back huge 1GB result set?
+
+---
+class:inverse
+background-image: url('danger.jpg')
+- ### .fade[What if an integration point will start to fail?]
+- ### .fade[What if it will send slow response for 5+ minutes without failing?]
+- ### .fade[What if it will send back huge 1GB result set?]
+- ### If your service fails, can others handle additional load they take? 
+???
+If your servers utilized at 100%, good luck, you'll have cascade failure!
+
+---
+class:inverse
+background-image: url('danger.jpg')
+- ### .fade[What if an integration point will start to fail?]
+- ### .fade[What if it will send slow response for 5+ minutes without failing?]
+- ### .fade[What if it will send back huge 1GB result set?]
+- ### .fade[If your service fails, can others handle additional load they take? ]
+- ### If your service fails, how far that failure reaches into app landscape?
+???
+How large is blast radious. At what point will error propagation or stop and whether it will.
+
+---
+class:inverse
+background-image: url('danger.jpg')
+- ### .fade[What if an integration point will start to fail?]
+- ### .fade[What if it will send slow response for 5+ minutes without failing?]
+- ### .fade[What if it will send back huge 1GB result set?]
+- ### .fade[If your service fails, can others handle additional load they take? ]
+- ### .fade[If your service fails, how far that failure reaches into app landscape?]
+- ### Can you switch off functionality that produces unexpectedly high load?
+???
+... and much more.
+- There are different patterns that help in fighting with problems I've mentioned before. Let me list few of them.
+
+---
+class: inverse
+background-image: url('superhero.png')
+- ### Timeouts
+
+---
+class: inverse
+background-image: url('superhero.png')
+- ### .fade[Timeouts]
+- ### Retries
+
+---
+class: inverse
+background-image: url('superhero.png')
+- ### .fade[Timeouts]
+- ### .fade[Retries]
+- ### Circuit Breakers
+
+---
+class: inverse
+background-image: url('superhero.png')
+- ### .fade[Timeouts]
+- ### .fade[Retries]
+- ### .fade[Circuit Breakers]
+- ### Bulkheads
+
+---
+class: inverse
+background-image: url('superhero.png')
+- ### .fade[Timeouts]
+- ### .fade[Retries]
+- ### .fade[Circuit Breakers]
+- ### .fade[Bulkheads]
+- ### Handshaking
+
+---
+class: inverse
+background-image: url('superhero.png')
+- ### .fade[Timeouts]
+- ### .fade[Retries]
+- ### .fade[Circuit Breakers]
+- ### .fade[Bulkheads]
+- ### .fade[Handshaking]
+- ### Leaky Bucket
+- ### ...
+???
+- Will not describe in details, deserve separate PPT
+- Mention 2 books that will make you LOVE and EMBRACE failures. They describe these patterns.
+
+---
+class: center, middle, releaseit
+![](releaseit.png)
+
+---
+class: center, middle, releaseit
+![](patternsfault.jpg)
+
+---
+class: center, middle, alchemy, transparency, giphy
+background-image: url('magic.gif')
+# Alchemy Architecture
+???
+* Lack of shared understanding, team FEELS rules, no one can't explain why SMTH TBD in a particular way.
+* One who finds reasonable (usually WRONG)  explanation is treaten as a WIZARD with a SUPERPOWERS. 
+* **ARCHITECTURAL SPECULATION** - wizards speculate on **SIGNIFICANCE OF SMTH OTHERS DON'T GET** to **push through their solutions**.
+* Architecture must evolve **controllably** -> can't control smth don't **understand**
+* Worse - team **pull** architecture in **different directions** - **GALIMATJA** in french
 
 ---
 class: center, middle, inverse
 # Wear software architect's hat by .important[understanding] and .important[impacting] current state of affairs.
 ???
-- Apply ‘‘all hands on deck’’ mentality — everyone is in some small part an architect, and that everyone has a crucial role to play in good project beginnings. 
-- Engage into decision making. Be proactive and ask for rational explanation. Challenge decisions.
-- It's important to handover more decisions to teams (start small, then more and more)
-- Sometimes things are pretty messy or architecture is driven by Ivory Tower. Go for external help / coaching - ask for experie if you don't have one (ask manager for architectural review). Do you want to work with sexy system or drown in BBoM? 
-
----
-class: inverse
-# What if actual architecture sucks?
-???
-The overal architecture is complex. Changing architecture is hard. If you're afraid or don't believe in opportunity - you already lost. You have to PULL architecture into expected direction. 
-
----
-class: inverse
-# What if actual architecture sucks?
-### - Visualize actual architecture. 
-
----
-class: inverse
-# What if actual architecture sucks?
-### - .fade[Visualize actual architecture.]
-### - Visualize expected / ideal architecture.
-???
-- Especially important with legacy codebases! because old code does not serve as an example.
-- Print out many copies of your architecture and pin one on the wall
-- Focal point for conversations
-- Feel free to draw on top of it.
----
-class: inverse
-# What if actual architecture sucks?
-### - .fade[Visualize actual architecture.]
-### - .fade[Visualize expected / ideal architecture.]
-### - Iterate towards ideal.
+- Apply ‘‘all hands on deck’’ mentality — everyone wears architect's hat. PULL, OWN COLLECTIVELY, SHARED UNDERSTANDING. 
+- ENGAGE in decision making, CHALLENGE, BE PROACTIVE, Demand RATIONAL explanation. 
+- Remember KIND ASS - share your decision making framework as a team.
 
 ---
 class: inverse, middle, center
 # Run short design sessions before diving into implementation.
 ???
-- Together in order to share knowledge, discuss painful questions, make sure you share the same vision.
-- All-the-way down.
-- I should point out that there is nothing whatever wrong with spending a few hours, or even a day or two, pondering the shape of your system. There’s nothing wrong with drawing some UML, or other diagrams in order to get some ideas about how your system should be structured. I don’t want you doing this for months, but there’s nothing wrong with thinking. 
+- CONSTANTLY SHARE THE SAME ARCH VISION AND VALUES
+- BEFORE EVERY FEATURE
+- You have to PITCH your implementation plan. If everyone agrees - well done! If someone says its NONSENSE - it's the best time to come to agreement.
+
+---
+class: inverse, middle, center
+# Make sure architecture is .important[VISIBLE] for everyone.
+???
+- And you share the same VIEW.
+- Print out many copies of your architecture and pin one on the wall
+- Focal point for conversations
+- Feel free to draw on top of it.
+- I find it useful to print out and **pin IDEAL architecture next to your actual**.
+
 
 ---
 class: inverse, middle, center
 # Run weekly meetup on issues and plan how to get better in small steps.
 ???
-- Trello with small tech tasks
-- It doesn't mean that you have to stop development or ask for management approval.
+- You definitely have something to improve - ideally, when you improve things together as a team, not as a lone survivor.
+- SMALL TECHNICAL IMPROVEMENTS / week. DEADLINE -  next meetup.
+- Surprisingly, even huge architectural changes can be broken down and implemented in this way.
 - Let's do some school math
 
 ---
@@ -862,7 +1031,7 @@ class: inverse
 # Change the architecture with baby steps
 ### ~ 45 minutes a day / person
 ???
-- Don't believe you can work on business tasks for 8 hours. If you can, it's counterproductive.
+- Don't believe you can work on business tasks for 8 hours in a row. If you're forced to, consider joining Ask.fm or 4finance
 
 ---
 class: inverse
@@ -894,11 +1063,10 @@ class: center, middle, inverse, training
 # Software Architecture Essentials
 ### 11th of March, 2015
 ### Register at .important[[www.craftsmans.lv](http://www.craftsmans.lv)]
-![](discount.png)
 
 ---
-class: center, middle, inverse, antipattern
-# Thank you!
+class: center, middle, inverse, thankyou
+![](thankyou.gif)
 ???
 I have I've challenged your thinking a bit. Thank you!
 
@@ -907,7 +1075,7 @@ I have I've challenged your thinking a bit. Thank you!
     </script>
     <script type="text/javascript">
       var slideshow = remark.create({
-
+        getSlideNo: function () { "" } 
       });
     </script>
   </body>
