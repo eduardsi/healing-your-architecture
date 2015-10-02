@@ -31,6 +31,18 @@
         background-size: 100%;
       }
 
+      .izbuha {
+        background-size: 100% !important;
+      }
+
+      .izbuha .title {
+        margin-top: 100px !important;
+      }
+
+      .pitch {
+        background-size:  100% !important;
+      }
+
       .yagni {
         background-size: 140%;
       }
@@ -39,8 +51,28 @@
        background-size: 140% 
       }
 
+      .superhero {
+        background-size: 120% !important;
+      }
+
       .structureless, .documents {
        background-size: 160%  
+      }
+
+      .slack {
+      }
+
+      .slack img {
+        height: 100%;
+      }
+
+      .retro {
+        margin: 0;
+        padding: 10px;
+      }
+
+      .retro img {
+        width: 100%;
       }
 
       .transparency {
@@ -75,7 +107,7 @@
 
       .antipattern {
         color: white;
-        background-color: #930a11
+        background-color: black;
       }
 
       .antipattern h1 {
@@ -167,7 +199,7 @@
       .thankyou img {
           position: relative;
           left: -300px;
-          width: 180%;
+          width: 140%;
       }
 
       .thankyou p {
@@ -179,7 +211,7 @@
   <body>
     <textarea id="source">
 
-class: center, middle, title
+class: center, middle, title, izbuha
 background-image: url('izbushka.jpg')
 .title[
 # Software Architecture 
@@ -188,15 +220,11 @@ background-image: url('izbushka.jpg')
 
 .author[
 ### Eduards Sizovs 
-### eduards.sizovs@gmail.com
+### hello (at) sizovs.net
 ### @eduardsi 
 ]
 ???
-- Hello everyone. I am excited that you chose to stay here, instead of drinking beer from outside.
-- A list of my favourite SA anti-patterns
-- I am lucky guy, working with enteprise, startup or spacerocket launch station projects. 
-- Interestingly, most of them suffer from the same desease.  All the time, the same rakes.
-- I'd appreciate if keep questions until Q&amp;A section, otherwise we might run out of time.
+- I work with startup, boring ents, space-ship stations -> same rakes, all the time!
 
 
 ---
@@ -204,16 +232,20 @@ class: center, middle, antipattern, transparency, giphy, yagni
 background-image: url('yagni.gif')
 # YAGNI Architecture
 
+---
+class: center, middle, antipattern, transparency, giphy, yagni
+# YAGNI Architecture
+
 ???
-- We are all IT people, and buzzwords, trends and shiny posters is our 2nd nature. Buzzword fetishism. 
+- Buzzword-fetish (fashion, CV must be cool)
 - Regardless of app/business domain, we'd love our application to be:
 - - Asynchronous and non-blocking (debugging a nightmare - wtvr, it's trendy)
 - - Based Micro services (huge # of moving parts - wtvr, it's trendy). 
-- - Backed by some NoSQL storage like MongoDB (few JSON documents - wtvr, it's trendy)
+- - Backed by some NoSQL storage like Cassandra (few JSON documents - wtvr, it's trendy)
 - - Delivered continuously and giving 5 nines uptime (it's fine to have a maitenance window - wtvr - it's trendy)
 
 - You're lucky if  your company understands that it's the only way to keep you motivated and steps back. Or, that "marchitecture" will increase hiring rates.
-- Otherwise, you hit the wall and get all fetishism-driven initiatives rejected. You say your employer, architect and team suck hard because they re conservative bastards.
+- Otherwise, you hit the wall and get all fetishism-driven initiatives rejected. You say your employer, architect and team suck hard because they don't get modern SD.
 
 ---
 class: center, middle, inverse
@@ -224,7 +256,7 @@ class: center, middle, inverse
 - I replied: find one service that is a limiting contraint (that makes you slow), rip it out, then stop and watch. 
 - it made him sad, because he was soo enthusiastic about MS, that he haven't ever thought about business case.
 - he went: well, we'll figure it out though. what he said: I will exagerrate the problem and make business pay for something that's not really needed.
-- it made me sad. That's why I share it with you.
+- he sold the idea. Got money. Brought MS. And left, just before they realised that they spent hunders thousands of $.
 
 
 ---
@@ -271,8 +303,8 @@ class: center, middle, inverse
 
 ???
 - Integrations, Infra may fail, API can change unexpectidly
-- Lead Developers drives fast motorbike
-- MongoDB experts can win a lottery etc.
+- Clojure developers drives fast motorbike
+- Cassandra experts can win a lottery etc.
 
 ---
 class: center, middle, inverse
@@ -297,26 +329,28 @@ http://gojko.net/2012/05/08/redefining-software-quality/
 
 ???
 - Another view on organizational/project needs is MHoNoSD.
-- Examples - deployable vs. successful, usable. vs useful, convincing switching to micro services when business is growing rapidly.
+- Examples - are you profitable? convincing switching to micro services when business is growing rapidly.
 - Your project can have its own pyramid. By understanding where you are and what's the next step, you don't have to waste time and $ on building "rockets" in the sky.
 
 ---
 class: center, middle, inverse
 # .important[SIMPLE] ?
 
-???
-Often we work in highly demanding and inpredictable environments when a notion of "need" is not well understood. Well, a startup.
-At this stage the LAST thing you want:
-- Get struggled with technologies you don't know (really tempting)
-- Stuck with choosing among million alternative frameworks
-- Implement stuff for future. Because you don't know anything about the future.
+---
+class: inverse, middle, center
+# Tiny by Chad Fowler
+### http://www.infoq.com/presentations/small-iteration-method-team
+
+---
+class: inverse, middle, center
+# Making Badass Developer by Kathy Sierra
+### https://www.youtube.com/watch?v=FKTxC9pl-WM
 
 ---
 class: center, middle, inverse
 # Pick the tool you .important[know well] and ship the .important[simplest possible solution]. 
 ???
-- You will have a bunch of things to learn besides technology.
-- It might seem pretty cool to experiment with new stuff. The winners is one who achived the goal, and not the one who fucks with computers all night long. 
+- it's always easy to add complexity. Reducing complexity requires much more effort.
 
 ---
 class: center, middle, inverse
@@ -568,9 +602,15 @@ class: middle, ide
 class: center, middle, inverse
 ## Apply .strike[micro] .important[service-oriented] mindset to software structure. Keep services decoupled as if they were remote.
 ???
-- Path towards SOA (much more easier to rip services out). 
+- path towards SOA (much more easier to rip services out). 
 - You'll see what your app is doing and whether it's not doing too much.
 - Interestingly, you can keep services decoupled and let them talk via REST API, exchange with events and try eventual consistency across bounded contexts.
+
+---
+class: center, middle, inverse
+background-image: url('veripacks.png')
+???
+Proper dependency management -> is mandatory. LEGO (primerno kak JDK)
 
 
 ---
@@ -697,6 +737,8 @@ class: middle, center, inverse
 ???
 - GoF says "We go to the code for what and how, but only the documentation tell us why".
 - Just following the code = **following a path through the woods at night**. 
+- JA OBJASNJAL ETO OUTSOURCING PARTNJORAM, AUDITU, NOVIM AKCIONERAM, ESHE ODNIM PARTNJORAM.
+
 
 ---
 class: middle, center, antipattern, giphy, transparency, hitbycar
@@ -929,25 +971,25 @@ background-image: url('danger.jpg')
 - There are different patterns that help in fighting with problems I've mentioned before. Let me list few of them.
 
 ---
-class: inverse
+class: inverse, superhero
 background-image: url('superhero.png')
 - ### Timeouts
 
 ---
-class: inverse
+class: inverse, superhero
 background-image: url('superhero.png')
 - ### .fade[Timeouts]
 - ### Retries
 
 ---
-class: inverse
+class: inverse, superhero
 background-image: url('superhero.png')
 - ### .fade[Timeouts]
 - ### .fade[Retries]
 - ### Circuit Breakers
 
 ---
-class: inverse
+class: inverse, superhero
 background-image: url('superhero.png')
 - ### .fade[Timeouts]
 - ### .fade[Retries]
@@ -955,7 +997,7 @@ background-image: url('superhero.png')
 - ### Bulkheads
 
 ---
-class: inverse
+class: inverse, superhero
 background-image: url('superhero.png')
 - ### .fade[Timeouts]
 - ### .fade[Retries]
@@ -964,7 +1006,7 @@ background-image: url('superhero.png')
 - ### Handshaking
 
 ---
-class: inverse
+class: inverse, superhero
 background-image: url('superhero.png')
 - ### .fade[Timeouts]
 - ### .fade[Retries]
@@ -991,29 +1033,13 @@ background-image: url('magic.gif')
 # Alchemy Architecture
 ???
 * Lack of shared understanding, team FEELS rules, no one can't explain why SMTH TBD in a particular way.
-* One who finds reasonable (usually WRONG)  explanation is treaten as a WIZARD with a SUPERPOWERS. 
-* **ARCHITECTURAL SPECULATION** - wizards speculate on **SIGNIFICANCE OF SMTH OTHERS DON'T GET** to **push through their solutions**.
+
+* Sanity check: Invite a team member for a coffee, ask smth like: why these 2 components talk via queue, not directly?
+* 4 possible answers: DO NOT KNOW; SOMEONE KNOWS; I HAVE TO FIGURE IT OUT (DOCS, UP2DATE); I KNOW (CHANCES ARE HE IS WRONG); 
+* Now ask EVERYONE the same question and match results. Most team I've been working with has no shared understanding.
+
 * Architecture must evolve **controllably** -> can't control smth don't **understand**
 * Worse - team **pull** architecture in **different directions** - **GALIMATJA** in french
-
----
-class: center, middle, inverse
-# Wear software architect's hat by .important[understanding] and .important[impacting] current state of affairs.
-???
-- Apply ‘‘all hands on deck’’ mentality
-- Force **PULLING ARCHITECTURE BACK TO THE TEAM**
-- Build **SHARED UNDERSTANDING**. 
-- Feeling of **COLLECTIVE OWNERSHIP**
-- ENGAGE in decision making, CHALLENGE, BE PROACTIVE, Demand RATIONAL explanation, Not accepting EVRTHNG **AS A GIVEN**.
-- **There is NO MAGIC, all architectural guidelines have reasons - JUSTIFIED or MEANINGLESS**.
-
----
-class: inverse, middle, center
-# Run short design sessions before diving into implementation.
-???
-- CONSTANTLY SHARE THE SAME ARCH VISION AND VALUES
-- BEFORE EVERY FEATURE
-- PITCH  implementation plan in front of the team. If everyone agrees - well done! If someone says its NONSENSE - it's the best time to come to agreement.
 
 ---
 class: inverse, middle, center
@@ -1025,57 +1051,34 @@ class: inverse, middle, center
 - Feel free to draw on top of it.
 - I find it useful to print out and **pin IDEAL architecture next to your actual**.
 
+---
+class: middle, center
+![](visualarch.jpg)
 
 ---
 class: inverse, middle, center
-# Run weekly meetup on issues and plan how to get better in small steps.
+# Make sure everyone is involved in decision making and maintain doc for those who were not.
+
+---
+class: middle, center, retro
+![](retro.png)
+
+---
+class: middle, center, slack
+background-image:url(slack.jpg)
+
+---
+class: middle, center, retro
+![](comment.png)
+
+---
+class: inverse, middle, center, pitch, antipattern
+background-image:url(pitch.jpg)
+# Architectural pitch
 ???
-- You definitely have something to improve - ideally, when you improve things together as a team, not as a lone survivor.
-- SMALL TECHNICAL IMPROVEMENTS / week. DEADLINE -  next meetup.
-- Surprisingly, even huge architectural changes can be broken down and implemented in this way.
-- Let's do some school math
-
----
-class: inverse
-# Change the architecture with baby steps
-
----
-class: inverse
-# Change the architecture with baby steps
-### ~ 45 minutes a day / person
-???
-- Don't believe you can work on business tasks for 8 hours in a row. If you're forced to, consider joining Ask.fm or 4finance
-
----
-class: inverse
-# Change the architecture with baby steps
-### ~ .fade[45 minutes a day / person]
-### ~ 4 hours a week / person
-
----
-class: inverse
-# Change the architecture with baby steps
-### ~ .fade[45 minutes a day / person]
-### ~ .fade[4 hours a week / person]
-### ~ 20 hours a week / 5 people
-
----
-class: inverse
-# Change the architecture with baby steps
-### ~ .fade[45 minutes a day / person]
-### ~ .fade[4 hours a week / person]
-### ~ 20 hours a week / 5 people
-# No excuse for not starting .important[tomorrow].
-???
-- Architect working part-time :)
-- Without even impacting business development, you can make you architecture a pleasure to work with!!! 
-
-
----
-class: center, middle, inverse, training
-# Software Architecture Essentials
-### 11th of March, 2015
-### Register at .important[[www.craftsmans.lv](http://www.craftsmans.lv)]
+- Product guys to PITCH idea.
+- Developers to pitch implementation in front of desk.
+- If everyone agrees - well done! If someone says its NONSENSE - it's the best time to come to agreement.
 
 ---
 class: center, middle, inverse, thankyou
@@ -1088,6 +1091,7 @@ I have I've challenged your thinking a bit. Thank you!
     </script>
     <script type="text/javascript">
       var slideshow = remark.create({
+        ratio: '16:9', 
         getSlideNo: function () { "" } 
       });
     </script>
